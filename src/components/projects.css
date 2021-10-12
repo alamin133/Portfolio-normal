@@ -1,0 +1,11 @@
+.btn{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    
+    justify-content: space-between;
+
+}
+.btn a{
+    margin-left: 20px;
+}

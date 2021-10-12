@@ -1,6 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
+import {useHistory} from 'react-router-dom';
 
 export default function Contact() {
+  const history=useHistory()
+
+  const [user,setUser]=useState({
+    name:'',
+    email:'',
+    message:''
+  })
+ let name, value;
+  const handleChange=(e)=>{
+    
+     name=e.target.name;
+     value=e.target.value;
+     setUser({...user,[name]:value})
+    
+    
+    
+  }
+ 
+
+  const PostData=async(e)=>{
+    e.preventDefault();
+
+    const {name,email,message}=user;
+
+    const res = await fetch('/contact', {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({
+        name,email,message
+
+      })
+    })
+    const data=await res.json();
+    if(res.status===400 ||!data){
+      window.alert("Fill out all filled ")
+    }
+    else{
+      window.alert("I have got your message! Thank You");
+      history.push("/about")
+    }
+
+  }
   return (
     <section id="contact" className="relative">
       <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
@@ -40,7 +85,7 @@ export default function Contact() {
             </div>
           </div>
         </div>
-        <form
+        <form method="POST"
           netlify
           name="contact"
           className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
@@ -58,7 +103,11 @@ export default function Contact() {
             <input
               type="text"
               id="name"
+             
               name="name"
+              value={user.name}
+              onChange={handleChange}
+              placeholder="Your Name"
               className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
@@ -69,24 +118,36 @@ export default function Contact() {
             <input
               type="email"
               id="email"
+            
               name="email"
+              value={user.email}
+              onChange={handleChange}
+              placeholder="Your email"
               className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             />
           </div>
           <div className="relative mb-4">
             <label
               htmlFor="message"
+             
+             
               className="leading-7 text-sm text-gray-400">
               Message
             </label>
             <textarea
               id="message"
               name="message"
+              value={user.message}
+              onChange={handleChange}
+              placeholder="Say anything"
               className="w-full bg-gray-800 rounded border border-gray-700 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
             />
           </div>
           <button
             type="submit"
+            name="contact"
+            value="contact"
+            onClick={PostData}
             className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
             Submit
           </button>
@@ -95,3 +156,11 @@ export default function Contact() {
     </section>
   );
 }
+
+
+
+
+
+
+
+

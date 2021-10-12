@@ -1,6 +1,7 @@
 
 import React from "react";
 import { projects } from "../data";
+import './projects.css'
 
 export default function Projects() {
   return (
@@ -16,6 +17,7 @@ export default function Projects() {
             facilis repellat ab cupiditate alias vero aliquid obcaecati quisquam
             fuga dolore.
           </p>
+         
         </div>
         <div className="flex flex-wrap -m-4">
           {projects.map((project) => (
@@ -37,6 +39,18 @@ export default function Projects() {
                     {project.title}
                   </h1>
                   <p className="leading-relaxed">{project.description}</p>
+                <div className="btn">
+                <a
+                href="https://github.com/alamin133/Todo-list"
+                className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-400 rounded text-sm">
+                Live project
+              </a>
+              <a
+                href="https://github.com/alamin133/Todo-list"
+                className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-200 rounded text-sm">
+                Source code
+              </a>
+                </div>
                 </div>
               </div>
             </a>

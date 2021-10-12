@@ -6,6 +6,8 @@ import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
+
+
 import {BrowserRouter as Router,Route,Switch } from "react-router-dom";
 
 
@@ -15,12 +17,13 @@ export default function App() {
       <Router>
       
         
+          <Navbar/>
           
-            <Navbar/>
-           
+            
             <Switch>
+              
           
-          <Route path exact="/">
+          <Route path="/about">
             <About />
           </Route>
           <Route path="/projects">
@@ -36,6 +39,7 @@ export default function App() {
             <Contact />
           </Route>
         </Switch>
+           
         </Router>
       
     
