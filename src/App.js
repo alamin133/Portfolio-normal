@@ -6,6 +6,7 @@ import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Testimonials from "./components/Testimonials";
 import Contact from "./components/Contact";
+import Intro from './components/Intro';
 
 
 import {BrowserRouter as Router,Route,Switch } from "react-router-dom";
@@ -18,11 +19,12 @@ export default function App() {
       
         
           <Navbar/>
-          
-            
+          <Intro/>
+           
             <Switch>
               
-          
+           
+         
           <Route path="/about">
             <About />
           </Route>
